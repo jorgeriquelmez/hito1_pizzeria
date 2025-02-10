@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Register.css';
+import Swal from 'sweetalert2'
 
 const Register = () => {
     const [users, setUsers] = useState({
@@ -17,21 +18,42 @@ const Register = () => {
         const { email, password, confirmPassword } = users;
 
         if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
-            alert('Por favor, todos los campos deben estar llenos');
+            // alert('Por favor, todos los campos deben estar llenos');
+            Swal.fire({
+                title: "Hey!",
+                text: "Todos los campos deben estar llenos",
+                icon: "warning"
+              });
             return; 
         }
 
         if (password.length < 6) { 
-            alert('La contraseña debe tener al menos 6 caracteres');
+            // alert('La contraseña debe tener al menos 6 caracteres');
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Algo salió mal!",
+                footer: "La contraseña debe ser minimo de 6 caracteres"
+              });
             return; 
         }
 
         if (password !== confirmPassword) {
-            alert('Las contraseñas no coinciden');
+            // alert('Las contraseñas no coinciden');
+            Swal.fire({
+                title: "Hey!",
+                text: "Las contraseñas no coinciden",
+                icon: "warning"
+              });
             return; 
         }
 
-        alert ('Registro exitoso')
+        // alert ('Registro exitoso')
+        Swal.fire({
+           title: "Login exitoso",
+           text: "Bienvenido",
+           icon: "success"
+         });
         setUsers({email:'', password:'', confirmPassword:''})
         // Aquí iría la lógica para enviar los datos al servidor
     };
