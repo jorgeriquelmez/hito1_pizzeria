@@ -1,4 +1,5 @@
 import './Navbar.css';
+// import Cart from './Cart'
 
 const Navbar = ({ activeTab, setActiveTab }) => {
     const total = 25000;
@@ -53,7 +54,12 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                         )}
 
                         <li className="nav-item ms-auto">
-                            <a className="nav-link active" id='carrito' href="#">🛒Total:${total.toLocaleString()}</a>
+                            <a 
+                                className={`nav-link active ${activeTab === 'cart' ? 'active' : ''}`} 
+                                id='carrito' 
+                                href="#"
+                                onClick={() => setActiveTab('cart')}
+                                >🛒Total:${total.toLocaleString()}</a>
                         </li>
                     </ul>
                 </div>
